@@ -1,6 +1,10 @@
 import string
 import re
 import math
+import unicodedata
+import os
+import NLP
+import pandas as pd
 
 shift = 1
 #THIS SMALL FUNCTIONS PERFORMS A CESAR ATTACK ON THE ORIGINAL STRING FILE
@@ -425,6 +429,9 @@ def crackSubstitution(msg, numSteps = 5000, restarts = 30):
    prob, words = max(segmentWithProb(decryption) for decryption in localMaxes)
    return ' '.join(words)
 
+
+#THIS FUNCTION RETURNS THE INDEX OF COINCIDENCE OF AN INPUT FILE
+
 alph = "abcdefghijklmnopqrstuvwxyz"
 
 def isLetter(char):
@@ -463,34 +470,51 @@ def getIOC(file):
     return total
 
 #IL CORPUS DI INPUT DELLA FUNZIONE SUCCESSIVA É CREATO SELEZIONANDO FILE CHE HANNO IOC PIÚ SIMILE A QUELLO DELL'EPIGRAFE
+#ATTRAVERSO QUESTA FUNZIONE:
 
-#def generateIOCcorpus(file, corpusdirectory):
-    #stringioc = getIOC(file)
-    #finalcorpus = ""
-    #for filename in os.listdir(corpusdirectory):
-        #f = os.path.join(directory, filename)
-        ## checking if it is a file
-        #if os.path.isfile(f):
-            #corpusioc = getIOC(f)
-            #if abs(corpusioc - stringioc) <= 0.1:
-                #finalcorpus += f.read()
-    #e = open("IOCcorpus"+str(corpusdirectory), "wt",  encoding="utf-8")
-    #e.write(finalcorpus)
+def generateIOCcorpus(encry_file, corpusdirectory):
+    print("How would you like to name the output-file?")
+    cont = input()
+    stringioc = getIOC(encry_file)
+    finalcorpus = ""
+    for filename in os.listdir(corpusdirectory):
+        f = os.path.join(corpusdirectory, filename)
+        # checking if it is a file
+        if os.path.isfile(f):
+            corpusioc = getIOC(f)
+            if abs(corpusioc - stringioc) <= 0.05:
+                a = open(f, "rt", encoding="utf-8")
+                finalcorpus += a.read()
+    e = open("IOCcorpus" + cont + ".txt", "wt",  encoding="utf-8")
+    e.write(finalcorpus)
+    e.close
 
-#THIS FUNCTION TAKES A CORPUS AS INPUT AND GENERATES A TXT FILE CONTAINING THE LOGARITHMIC 
-#VALUES FOR ALL 5-GRAMS IN THE FORMAT REQUESTED BY AZDECRYPT (second attempt):
+#THIS FUNCTION TAKES A CORPUS AS INPUT (AS  THE ONE GENERATED IN THE PREVIOUS FUNCTION)
+# AND GENERATES A TXT FILE CONTAINING THE LOGARITHMIC 
+#VALUES FOR ALL N-GRAMS IN THE FORMAT REQUESTED BY AZDECRYPT (5-Grams):
 #"EXAMPL123XAMPL009AMPLE007"
 
+def ngramsAZ(corpus, n, case = "lower"):
+    f = open(corpus, "rt", encoding="utf-8")
+    f = f.read()
+    e = open(str(n) + "gramsAZ" + str(corpus) + case, "wt",  encoding="utf-8")
+    r = str([f[i:i+n] for i in range(len(f) - (n-1))]).split(',')
+    df1 = pd.Series(r).value_counts().sort_index().reset_index().reset_index(drop=True)
+    df1.columns = ['Element', 'Frequency']
+    df1 =  df1.sort_values(by = 'Frequency', ascending=False)
+    df1 = dict(zip(df1.Element, df1.Frequency))
+    df1 = sorted(df1.items(), key=lambda item: item[1], reverse=True)
+    AZdecryptstr = ""
+    for key in df1:
+        log_ngram = round(math.log(int(key[1]))*10)
+        if case == "lower":
+            AZdecryptstr += str(key[0]) + str(log_ngram).zfill(3)
+        else:
+            AZdecryptstr += str(key[0]).upper() + str(log_ngram).zfill(3)
 
-#def fivegramsAZ(file):
-    # msg = open(file, "rt", encoding="utf-8")
-    #msg = msg.read()
-    #e = open("fivegramsAZ"+str(file), "wt",  encoding="utf-8")
-    #r = str([msg[i:i+n] for i in range(len(msg) - (n-1))]).split(',')
-    #df1 = pd.Series(r).value_counts().sort_index().reset_index().reset_index(drop=True)
-    #for elem in df1:
-        #log_ngram = math.log(ngram_freq)*10
-        #e.append(ngram).append(str(ngram_frequency))
+    AZdecryptstr = AZdecryptstr.replace("'", "").replace(" ", "")
+    e.write(AZdecryptstr)
+    e.close
    
     
 

@@ -58,14 +58,24 @@ def RemoveSpaces(epigraph):
 #THIS FUNCTION ITERATES OVER ALL FILES IN A DIRECTORY AND STRIP IT OF ALL UNWANTED DIACRITICS SIGNS:
 #IT ALSO REMOVE ALL SPACES
 
-def cleandirectory(directory):
+def cleandirectory(directory, cont = True):
     for filename in os.listdir(directory):
         f = os.path.join(directory, filename)
         # checking if it is a file
         if os.path.isfile(f):
             strip_accents(f)
             strip_nochar(f)
-            scrcont(f, 'C:\\Users\\Palma\\Desktop\\MariaLaNova\\oldhungariancorpus\\oldhungarianclean')
+            if cont == True:
+                scrcont(f, 'C:\\Users\\Palma\\Desktop\\MariaLaNova\\oldhungariancorpus\\oldhungariancleancont')
+            else:
+                filedir = 'C:\\Users\\Palma\\Desktop\\MariaLaNova\\oldhungariancorpus\\oldhungarianclean'
+                typefile = open(f, "rt", encoding="utf-8")
+                typefile = typefile.read()
+                newdir = os.path.join(filedir, "clean"+str(f).replace('C:\\Users\\Palma\\Desktop\\MariaLaNova\\oldhungariancorpus\\','')) 
+                with open(newdir, "w",  encoding="utf-8") as f:  
+                    for line in typefile:
+                        f.write(line)
+            
 
 #THIS FUNCTION GENERATES AN ARRAY OF CHARACTER FREQUENCY SORTED DESCENT
 
@@ -624,29 +634,31 @@ def  letterNGramsfilerank(file, n):
     e.write(df1.to_string(index=False))
     e.close()
 
+# THIS FUNCTION CONVERTS A LIST TO A MAP
+
+def ConvertList2Map(lst):
+    res_dct = map(lambda i: (lst[i], lst[i+1]), range(len(lst)-1)[::2])
+    return dict(res_dct)
+
 #THIS FUNCTION TAKES A txt FILE AS INPUT AND RETURNS A FREQUENCY DICTIONARY OF THE WORDS CONTAINED THEREIN
 
-def freqvoc(file):
+def freqvoc(file, outfile):
     freqvoc = {}
-    wlist = open(file, "rt", encoding="utf-8")
+    msg = open(file, "rt", encoding="utf-8")
     wlist = msg.read().split()
-    #for word in list:
-        #stem
-        #extracttypes
-        #count
-        #printinfile
+    for word in wlist:
+        ps = PorterStemmer()
+        stemwo = ps.stem(word)
+        if stemwo in freqvoc:
+            freqvoc[stemwo] += 1
+        else:
+            freqvoc.update({stemwo: 1}) 
 
-#THIS FUNCTION GENERATES A FREQUENCY VOCABULARY FROM AN INPUT CORPUS: IF 
-# THE INPUT IS A DIRECTORY, THEN THE FUNCTION LOOPS THROUGH ALL TXT FILES IN THE FOLDERS;
-# OTHERWISE IT JUST OPENS THE TXT AND PERFORMS THE ALGORITHM ON IT
+    sorted_freqvoc = sorted(freqvoc.items(), key=lambda x:x[1], reverse=True)
+    sorted_freqvoc = dict(sorted_freqvoc)
+    print(sorted_freqvoc)
+    with open(outfile, "a",  encoding="utf-8") as f: 
+        for item in sorted_freqvoc.items(): 
+            f.write('%s:%s\n' % (item))
 
-#def genfreqvoc(corpus):
-#    if corpus ends with ".txt":
-#        freqvoc
-#    else: 
-#        for filename in os.listdir(directory):
-#            f = os.path.join(directory, filename)
-#            # checking if it is a file
-#            if os.path.isfile(f):
-#                freqvoc
 
