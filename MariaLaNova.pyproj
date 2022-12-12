@@ -34,6 +34,9 @@
     <Compile Include="Palindromes.py" />
     <Compile Include="MarialanovaOriginal.py" />
     <Compile Include="Replace.py" />
+    <Compile Include="scriptiocontinua4.txt">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="SeleniumFirefox.py">
       <SubType>Code</SubType>
     </Compile>
@@ -120,6 +123,8 @@
     <Content Include="grsmallest2.txt" />
     <Content Include="grsmallest3.txt" />
     <Content Include="grsmallest4.txt" />
+    <Content Include="IOCcorpussmall.txt" />
+    <Content Include="IOCcorpuswords.txt" />
     <Content Include="könyvecse.txt" />
     <Content Include="latincorpus.txt" />
     <Content Include="latincorpus2.txt" />

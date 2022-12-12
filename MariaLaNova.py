@@ -311,8 +311,23 @@ while i < 18:
 
 #patternsearch(1, "scrcontaporcodex.txt", "YY", cont = True)
 #matchWordscrco("Jezus", "scrcontaporcodex.txt")
-i = 1
-while i < 9:
-   letterNGramsfilerank("scriptiocontinua3.txt", i)
-   i += 1
+#i = 1
+#while i < 9:
+#   letterNGramsfilerank("scriptiocontinua3.txt", i)
+#   i += 1
 #getIOC("gregoriipapaxiii.txt")
+
+#generateIOCcorpus("scriptiocontinua3.txt", 'C:\\Users\\Palma\\Desktop\\MariaLaNova\\oldhungariancorpus\\oldhungarianclean')
+#getIOC("scriptiocontinua4.txt")
+#getIOC("scrcontBecsiK_4.txt")
+#getIOC("scrcontbirkcodex.txt")
+#getIOC("scrcontBodcodex.txt")
+#getIOC("bibliahuszitacleancon.txt")
+
+#ngramsAZ("IOCcorpus.txt", 5)
+#ngramsAZ("IOCcorpussmall.txt", 5)
+
+#generateIOCcorpus("scriptiocontinua4.txt", 'C:\\Users\\Palma\\Desktop\\MariaLaNova\\oldhungariancorpus\\oldhungarianclean')
+#cleandirectory('C:\\Users\\Palma\\Desktop\\MariaLaNova\\oldhungariancorpus', False)
+
+#freqvoc("IOCcorpuswords.txt", "freqvocOLDhungarian.txt")
