@@ -18,10 +18,10 @@
   <img src="picsreadme/generateIOCcorpus.png" alt="generateIOCcorpus" width="80%"/>
 </p>
 <p align="center">
-  <img src="picsreadme/ioc.png" alt="ioc" width="80%"/>
+  <img src="picsreadme/ioc.png" alt="ioc" width="40%"/>
 </p>
 <p align="center">
-  <img src="picsreadme/logten.png" alt="logten" width="80%"/>
+  <img src="picsreadme/logten.png" alt="logten" width="40%"/>
 </p>
 <p align="center">
   <img src="picsreadme/ngramsAZ.png" alt="ngramsAZ" width="80%"/>
