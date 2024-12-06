@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="picsreadme/malanova.PNG" alt="malanova" width="80%"/>
+  <img src="picsreadme/malanova.svg" alt="malanova" width="80%"/>
 </p>
 <p align="center">
   <img src="picsreadme/histcorp.png" alt="histcorp" width="80%"/>
