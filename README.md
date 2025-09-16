@@ -97,7 +97,7 @@ the same model used for the other ”Replace” functions.
   <img src="picsreadme/AZdecrypttable.png" alt="AZdecrypttable" width="100%"/>
 </p>
 
-As you can notice from the overwiew above, the ATDecrypt environment is quite intutive to use as well. After pasting the encrypted text in the window on the left and selecting a decryption method from the menu-list, you have to select a candidate language from:
+As you can notice from the overwiew above, the AZDecrypt environment is quite intutive to use as well. After pasting the encrypted text in the window on the left and selecting a decryption method from the menu-list, you have to select a candidate language from:
 
 File -> Load N-Grams,
 
