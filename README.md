@@ -11,8 +11,10 @@ If you are using it for publication purposes, please use the provided citation.
 
 The main available tool for deciphering historical ciphers is currently [CrypTool 2](https://www.cryptool.org/en/ct2/).
 It offers a wide choice of de- and encryption algorithms in a beautiful and interactive User Experience.
-Although the provided clear-text languages are updated at every release, they are fix and not customizable.
-The major added value of this contribution is providing a workflow for generating n-grams files from customized historical corpora.
+**Although the provided clear-text languages are updated at every release, they are fix and not customizable.
+The major added value of this contribution is providing a workflow for generating n-grams files from customized historical corpora.**
+
+
 A notable source for downloading historical corpora is [HistCorp](https://www2.lingfil.uu.se/person/pettersson/histcorp/).
 
 <p align="center">
