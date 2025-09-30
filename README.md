@@ -45,8 +45,7 @@ After selecting an historical corpus, it is necessary to pre-process it. The pre
   <img src="picsreadme/ngramsAZ.png" alt="ngramsAZ" width="80%"/>
 </p>
 
-The output file will enlist each N-gram immedi-
-ately followed by its log value, a number between
+The output file will enlist each N-gram immediately followed by its log value, a number between
 0 and 255 obtained by:
 
 <p align="center">
